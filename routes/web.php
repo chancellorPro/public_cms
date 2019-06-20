@@ -16,6 +16,8 @@ Route::get('/forbidden', 'IndexController@forbidden')->name('forbidden');
 
 Route::get('/', 'Nla\NlaAssetController@publicIndex')->name('nla');
 Route::get('/admin', 'MenuController@index')->name('menu')->middleware('auth');
+Route::post('change-per-page', 'Nla\NlaAssetController@perPage');
+Route::post('change-order', 'Nla\NlaAssetController@order');
 
 Route::middleware(['auth', 'roles'])->group(function () {
     Route::get('menu/edit', 'MenuController@edit')->name('menu.edit');
@@ -119,7 +121,5 @@ Route::middleware(['auth', 'roles'])->group(function () {
     Route::post('nla-import', 'Nla\NlaAssetController@import')->name('nla-asset.import');
     Route::post('nla-assign', 'Nla\NlaAssetController@assign')->name('nla-asset.assign');
     Route::post('nla-update', 'Nla\NlaAssetController@update')->name('nla-asset.update');
-    Route::post('change-order', 'Nla\NlaAssetController@order');
-    Route::post('change-per-page', 'Nla\NlaAssetController@perPage');
 
 });
