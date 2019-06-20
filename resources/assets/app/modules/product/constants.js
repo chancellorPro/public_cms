@@ -1,0 +1,1 @@
+export const PRODUCT_SHOW_FORM = 'PRODUCT_SHOW_FORM';

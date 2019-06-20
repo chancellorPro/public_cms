@@ -1,0 +1,45 @@
+.table {
+
+  td {
+    word-break: break-all;
+  }
+
+  /**
+   * Column sizes
+   */
+  th, td {
+    &.id {
+      width: 7%;
+    }
+
+    &.actions {
+      width: 10%;
+    }
+
+    &.xs {
+      width: 5%;
+    }
+  }
+
+  &.table-multiple-rows {
+    .no-border {
+      th, td {
+        border-top: none;
+      }
+    }
+  }
+
+  .x_panel {
+    padding: 4px;
+
+    .x_title {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .striped {
+      background-color: #dddddd;
+  }
+}
+

@@ -1,0 +1,64 @@
+.cms-adp {
+    span.close-release {
+        border-bottom: 2px solid red;
+    }
+    .table {
+        td.actions {
+            width: 95px;
+            .action {
+                display: inline-block;
+                vertical-align: top;
+            }
+        }
+    }
+    
+    .adp-categories {
+        .active-category {
+            background: #e0e0e0;
+            border: 2px solid #d4d4d4;
+        }
+    }
+    .tasks-list {
+        .active-task {
+            background: #e0e0e0;
+            border: 2px solid #d4d4d4;
+        }
+    }
+    .total-by-status-table {
+        tr th {
+            padding: 10px;
+        }
+    }
+    .uploaded {
+        background: #d0ffd0;
+    }
+  
+    /*STATUS_NEW*/
+    .status-1 {
+        background: #ffffd0;
+    }
+    /*STATUS_BOOKED*/
+    .status-2 {
+        background: #ffffd0;
+    }
+    /*STATUS_ASSIGNED*/
+    .status-3 {
+        background: #ffffff;
+    }
+    /*STATUS_IN_PROGRESS*/
+    .status-4 {
+        background: #d0e0ff;
+    }
+    /*STATUS_UPDATED_BUNDLE*/
+    .status-5 {
+        background: #c9fe90;
+    }
+    /*STATUS_COMMENTS*/
+    .status-6 {
+        background: #06f5fe;
+    }
+    /*STATUS_UPDATED_SOURCE*/
+    .status-7 {
+        background: #abc095;
+    }
+}

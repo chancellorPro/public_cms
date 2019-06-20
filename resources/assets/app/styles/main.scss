@@ -1,0 +1,97 @@
+/**
+ * Custom
+ */
+.x_content .menu {
+    display: block;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+.x_content .menu li {
+    list-style: none;
+    display: inline-block;
+}
+.x_content .menu li a {
+    display: inline-block;
+    padding: 4px 6px;
+}
+.x_content .menu li.active a {
+    font-weight: bold;
+}
+
+/**
+ * Into the modal
+ */
+.modal .action-type-state ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.modal .action-type-state li {
+    list-style: none;
+}
+
+/**
+ * Assets grid for the Action Type
+ */
+.x_content .table .state {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.x_content .table .state:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.x_content .table .state .item {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+.x_content .table .state .item .control-label {
+    word-break: break-word;
+}
+.select2-container {
+    min-width: 100%;
+}
+
+/**
+ * Awards
+ */
+.award-assets .asset {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+/**
+ * About this page
+ */
+.page-title .title_right {
+    height: 100%;
+    position: relative;
+}
+.page-title .title_right a.about {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.modal .config-item {
+    border: 1px solid #eee;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+span.select2-container {
+    display: block;
+}
+
+.popover {
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

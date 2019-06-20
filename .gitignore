@@ -1,0 +1,13 @@
+/node_modules
+
+/public/hot
+/public/storage
+/public/app
+
+/storage/*.key
+/vendor
+
+*.log
+.env
+
+/.idea

@@ -1,0 +1,12 @@
+.btn {
+  &.close {
+    span {
+      display: block;
+      line-height: 12px;
+    }
+  }
+}
+
+.multiline-btns .btn{
+    margin-top: 5px;
+}

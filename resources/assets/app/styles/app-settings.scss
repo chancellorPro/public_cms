@@ -1,0 +1,84 @@
+$indentSize: 4px;
+$closeButtonRightPosition: 7px;
+$embedBorderColor: #ccc;
+$embedPadding: 14px;
+
+.embed {
+
+  .close {
+    padding: 0 $indentSize;
+  }
+
+  .embed-group {
+    border-bottom: 1px solid $embedBorderColor;
+    padding: $embedPadding $embedPadding $indentSize $embedPadding;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  &-row {
+    & > .embed-group {
+      & > .close {
+        position: absolute;
+        top: 0;
+        right: $closeButtonRightPosition;
+      }
+    }
+  }
+
+  &-table {
+    display: flex;
+    flex-flow: column;
+
+    .embed-group {
+      display: flex;
+      border: none;
+      margin: 0;
+      padding: 0 $indentSize $indentSize 0;
+
+      &:first-child {
+        padding-top: $indentSize;
+
+        .form-group {
+          .control-label {
+            opacity: 1;
+            height: auto;
+          }
+        }
+      }
+
+      .remove-embed {
+        align-self: flex-end;
+      }
+
+      .form-group {
+        display: flex;
+        flex-flow: column;
+        flex-grow: 1;
+        justify-content: flex-end;
+        width: auto;
+        margin: 0;
+
+        &>label,
+        &>div {
+          display: block;
+          width: 100%;
+          padding: 0 0 0 $indentSize;
+        }
+
+        .control-label {
+          opacity: 0;
+          height: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.embed-buttons {
+  text-align: right;
+  padding: 0 $indentSize $indentSize 0;
+}

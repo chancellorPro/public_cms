@@ -1,0 +1,55 @@
+<?php
+
+return [
+    'sections' => [
+        'unsorted' => 'Other Configs',
+        'assets' => 'Assets',
+        'assetsRelated' => 'Assets related',
+        'appSettings' => 'App settings',
+        'shops' => 'Shops'
+    ],
+
+    'configs' => [
+        'Asset' => 'Assets',
+        'ActionType' => 'Action Types',
+        'Subtype' => 'Subtypes',
+        'ActionTypeAttribute' => 'Action Type Attribute',
+        'ActionTypeGroup' => 'Action Type Groups',
+        'ActionTypeState' => 'Action Type States',
+        'Attribute' => 'Attributes',
+        'Banner' => 'Banners',
+        'NeighborActivity' => 'Neighbor Activities',
+        'NeighborActivityType' => 'Neighbor Activity Types',
+        'Product' => 'Products',
+        'Resource' => 'Resources',
+        'Shop' => 'Shops',
+        'ShopDepartment' => 'Shop Departments',
+        'Tamatool' => 'Tamatools',
+        'Award' => 'Awards',
+        'RandomAwardSection' => 'Random Award Sections',
+        'RandomAward' => 'Random Awards',
+        'ActionTypeStateAttribute' => 'Action Type State Attribute',
+        'MakeupKit' => 'Makeup Kits',
+        'Placement' => 'Placements',
+        'AssetActionTypeState' => 'Asset Action Type States',
+        'Localization' => 'Localizations',
+        'TrophyCupConfig' => 'Trophy Cup Config',
+    ],
+
+    'appSettings' => [
+        'ai_animation' => 'Ai Animation',
+        'ai_behaviour' => 'Ai Behaviour',
+        'initial_user' => 'Initial User',
+        'levels' => 'Levels',
+        'neighbor_bonus' => 'Neighbor Bonus',
+        'random_pet_names' => 'Random Pet Names',
+        'room_default_assets' => 'Room Default Assets',
+        'shop_admin_default_assets' => 'Shop Admin Default Assets',
+        'shop_department_background' => 'Shop Department Background',
+        'subtype-attributes' => 'Attributes',
+        'magic' => 'Magic',
+        'dpa' => 'DPA',
+        'asset_sound' => 'Asset Sound',
+        'common_sound' => 'Common Sound',
+    ],
+];

@@ -1,0 +1,11 @@
+.shop-department {
+    .shops {
+        &>td {
+            padding-top: 0;
+
+            .x_panel {
+                border-top: none;
+            }
+        }
+    }
+}

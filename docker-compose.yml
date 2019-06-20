@@ -1,0 +1,43 @@
+version: '3.5'
+services:
+
+    # Nginx
+    nginx:
+        container_name: pet_city_cms_nginx
+        build:
+            context: ./docker/nginx
+        restart: always
+        ports:
+            - 80:8080
+            - 443:443
+        links:
+            - php
+        volumes:
+            - .:/var/www/html
+            - ./docker/nginx/letsencrypt:/etc/letsencrypt
+
+    # PHP
+    php:
+        container_name: pet_city_cms_php
+        build:
+            context: ./docker/php
+        restart: always
+        volumes:
+            - .:/var/www/html
+        working_dir: /var/www/html
+
+    # Node
+    node:
+        container_name: pet_city_cms_node
+        build:
+            context: ./docker/node
+        ports:
+            - 3000:3000
+        volumes:
+            - .:/var/www/html
+        working_dir: /var/www/html
+
+networks:
+    default:
+        external:
+            name: pet_city_network

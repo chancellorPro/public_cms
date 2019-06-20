@@ -1,0 +1,1 @@
+export const TAMATOOL_SHOW_FORM = 'TAMATOOL_SHOW_FORM';

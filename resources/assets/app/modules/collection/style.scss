@@ -1,0 +1,48 @@
+$indentSize: 8px;
+
+.module-collection {
+  .no-border {
+    & > td {
+      padding: $indentSize 0 0;
+    }
+  }
+
+  .slots {
+    padding-top: $indentSize;
+    margin-bottom: $indentSize * 3;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    .slot {
+      position: relative;
+      width: calc((100% - (#{$indentSize} + 4px)) / 5);
+      border: 1px solid #aaa;
+      padding: $indentSize;
+      margin: 1px;
+
+      .list-thumbnail {
+        width: 150px;
+        height: 150px;
+        margin: auto;
+      }
+    }
+  }
+
+  .table {
+    .no-padding {
+      border: none;
+      margin: 0;
+    }
+
+    .xs {
+      width: 8%;
+    }
+
+    .name,
+    .actions {
+      width: 24%;
+    }
+  }
+}

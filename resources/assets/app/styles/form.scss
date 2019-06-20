@@ -1,0 +1,7 @@
+input,
+select {
+  &.changed {
+    background: #eee;
+    font-weight: bold;
+  }
+}

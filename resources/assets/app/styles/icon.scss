@@ -1,0 +1,90 @@
+.icon {
+
+  /**
+   * Coin and cash icons in the inputs at the assets grid
+   */
+  &.xp,
+  &.cash,
+  &.coin {
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-y: 50%;
+    background-position-x: 2px;
+    padding-left: 24px;
+  }
+
+  &.cash {
+    background-image: url("images/cash.png");
+  }
+
+  &.coin {
+    background-image: url("images/coin.png");
+  }
+
+  &.public-head {
+    background-repeat: no-repeat;
+    background-image: url("images/header.jpg");
+    height: 205px;
+    width: 2500px;
+
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+  }
+
+  /**
+   * input.icon.cash
+   * input.icon.coin
+   */
+  @at-root input#{&} {
+    &.xp,
+    &.cash,
+    &.coin {
+      text-align: right;
+      min-width: 70px;
+    }
+  }
+}
+
+.tag-icon {
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-y: 50%;
+    background-position-x: 50%;
+    padding-left: 30px;
+    display: inline-block;
+    height: 30px;
+    
+    &.animation {
+        background-image: url("images/animation.png");
+    }
+    
+    &.copy {
+        background-image: url("images/copy.png");
+    }
+    
+    &.cash {
+        background-image: url("images/cash.png");
+    }
+
+    &.coin {
+        background-image: url("images/coin.png");
+    }
+}
+
+.background {
+    background-size: auto 60%;
+    background-repeat: no-repeat;
+    &.webgl {
+        background-image: url("images/webgl_icon.png");
+        background-size: auto 40%;
+    }
+    &.android {
+        background-image: url("images/green-android-icon.png");
+    }
+    &.ios {
+        background-image: url("images/ios-icon.png");
+    }
+}

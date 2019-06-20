@@ -1,0 +1,52 @@
+{
+  "name": "group-admin-cms",
+  "version": "1.0.0",
+  "description": "CMS for group admins",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "webpack --mode production --config webpack.config.js",
+    "dev": "webpack --mode development",
+    "start": "webpack --mode development --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CatalystApps/PetCity2_CMS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CatalystApps/PetCity2_CMS/issues"
+  },
+  "homepage": "https://github.com/CatalystApps/PetCity2_CMS#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^2.0.0",
+    "file-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.10.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "blueimp-md5": "^2.10.0",
+    "bootstrap": "^3.4.0",
+    "bootstrap-colorpicker": "^2.5.3",
+    "cleave.js": "^1.4.7",
+    "dotenv": "^6.2.0",
+    "dropzone": "^5.5.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^2.2.4",
+    "sortablejs": "^1.8.1"
+  }
+}

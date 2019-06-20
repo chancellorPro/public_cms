@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<ruleset name="Laravel Standards">
+    <description>The Laravel Coding Standards</description>
+
+
+    <!--Generic-->
+    <rule ref="Generic"/>
+    <rule ref="Generic.Classes">
+        <exclude name="Generic.Classes.OpeningBraceSameLine.BraceOnNewLine"/>
+    </rule>
+    <rule ref="Generic.CodeAnalysis"/>
+    <rule ref="Generic.Commenting">
+        <exclude name="Generic.Commenting.Todo.CommentFound"/>
+        <exclude name="Generic.Commenting.Todo.TaskFound"/>
+    </rule>
+    <rule ref="Generic.ControlStructures"/>
+    <rule ref="Generic.Debug"/>
+    <rule ref="Generic.Files">
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+        <exclude name="Generic.Files.EndFileNoNewline.Found"/>
+        <exclude name="Generic.Files.LowercasedFilename.NotFound"/>
+    </rule>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="130"/>
+        </properties>
+    </rule>
+    <rule ref="Generic.Formatting">
+        <exclude name="Generic.Formatting.NoSpaceAfterCast.SpaceFound"/>
+        <exclude name="Generic.Formatting.SpaceBeforeCast.NoSpace"/>
+        <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect"/>
+    </rule>
+    <rule ref="Generic.Functions">
+        <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine"/>
+    </rule>
+    <rule ref="Generic.Metrics.CyclomaticComplexity">
+        <properties>
+            <property name="complexity" value="16"/>
+            <property name="absoluteComplexity" value="20"/>
+        </properties>
+    </rule>
+    <rule ref="Generic.Metrics.NestingLevel">
+        <properties>
+            <property name="nestingLevel" value="6"/>
+            <property name="absoluteNestingLevel" value="10"/>
+        </properties>
+    </rule>
+    <rule ref="Generic.NamingConventions"/>
+    <rule ref="Generic.PHP">
+        <exclude name="Generic.PHP.ClosingPHPTag.NotFound"/>
+        <exclude name="Generic.PHP.UpperCaseConstant.Found"/>
+    </rule>
+    <rule ref="Generic.Strings"/>
+    <rule ref="Generic.WhiteSpace">
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
+    </rule>
+    <rule ref="Generic.Arrays">
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+    </rule>
+
+
+    <!--MySource-->
+    <rule ref="MySource.PHP">
+        <exclude name="MySource.PHP.ReturnFunctionValue.NotAssigned"/>
+    </rule>
+
+
+    <!--PEAR-->
+    <rule ref="PEAR"/>
+    <rule ref="PEAR.Classes"/>
+    <rule ref="PEAR.Commenting">
+        <exclude name="PEAR.Commenting.ClassComment.MissingAuthorTag"/>
+        <exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag"/>
+        <exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag"/>
+        <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag"/>
+        <exclude name="PEAR.Commenting.ClassComment.MissingPackageTag"/>
+        <exclude name="PEAR.Commenting.FileComment.Missing"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingCategoryTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingPackageTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
+    </rule>
+    <rule ref="PEAR.ControlStructures"/>
+    <rule ref="PEAR.Files"/>
+    <rule ref="PEAR.Formatting"/>
+    <rule ref="PEAR.Functions"/>
+    <rule ref="PEAR.Functions.FunctionCallSignature">
+        <properties>
+            <property name="requiredSpacesAfterOpen" value="1"/>
+            <property name="requiredSpacesBeforeClose" value="1"/>
+        </properties>
+        <severity>0</severity>
+    </rule>
+    <rule ref="PEAR.NamingConventions">
+        <exclude name="PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
+        <exclude name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+    </rule>
+    <rule ref="PEAR.WhiteSpace">
+        <exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact"/>
+    </rule>
+
+
+    <!--PSR1-->
+    <rule ref="PSR1" />
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>database/*</exclude-pattern>
+    </rule>
+
+
+    <!--PSR2-->
+    <rule ref="PSR2" />
+
+
+    <!--Squiz-->
+    <rule ref="Squiz.NamingConventions">
+        <exclude name="Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
+        <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+        <exclude name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
+    </rule>
+    <rule ref="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
+    <rule ref="Squiz.PHP">
+        <exclude name="Squiz.PHP.CommentedOutCode.Found"/>
+        <exclude name="Squiz.PHP.DisallowBooleanStatement.Found"/>
+        <exclude name="Squiz.PHP.DisallowComparisonAssignment.AssignedBool"/>
+        <exclude name="Squiz.PHP.DisallowComparisonAssignment.AssignedComparison"/>
+        <exclude name="Squiz.PHP.DisallowInlineIf.Found"/>
+    </rule>
+    <rule ref="Squiz.Scope" />
+    <rule ref="Squiz.WhiteSpace">
+        <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose"/>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
+        <properties>
+            <property name="ignoreNewlines" value="true" />
+        </properties>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="ignoreBlankLines" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+        <exclude name="Squiz.WhiteSpace.FunctionSpacing.After"/>
+        <exclude name="Squiz.WhiteSpace.FunctionSpacing.Before"/>
+        <properties>
+            <property name="spacingBeforeFirst" value="1"/>
+            <property name="spacingAfterLast" value="0"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.Commenting">
+        <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
+        <exclude name="Squiz.Commenting.BlockComment.WrongStart"/>
+        <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed"/>
+        <exclude name="Squiz.Commenting.ClosingDeclarationComment.Missing"/>
+        <exclude name="Squiz.Commenting.FileComment.Missing"/>
+        <exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
+        <exclude name="Squiz.Commenting.FunctionComment.ThrowsNoFullStop"/>
+        <exclude name="Squiz.Commenting.InlineComment.DocBlock"/>
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+        <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>
+        <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing"/>
+    </rule>
+    <rule ref="Squiz.Commenting" />
+    <rule ref="Squiz.PHP.CommentedOutCode" />
+
+    <rule ref="Squiz.Arrays">
+        <exclude name="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned"/>
+        <exclude name="Squiz.Arrays.ArrayDeclaration.KeyNotAligned"/>
+        <exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed"/>
+        <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned"/>
+        <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed"/>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned">
+        <exclude-pattern>resources/*</exclude-pattern>
+    </rule>
+
+    <!--Zend-->
+    <rule ref="Zend">
+        <exclude name="Zend.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+        <exclude name="Zend.NamingConventions.ValidVariableName.NotCamelCaps"/>
+    </rule>
+
+
+    <!--Files to check-->
+    <file>app</file>
+    <file>resources/lang</file>
+    <file>routes</file>
+    <file>database</file>
+    <!--<file>config</file>-->
+
+
+    <!--Arguments-->
+    <arg name="colors"/>
+</ruleset>
