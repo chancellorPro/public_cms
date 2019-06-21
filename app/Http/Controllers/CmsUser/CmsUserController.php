@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CmsUser\CreateUpdateUser;
 use App\Models\Cms\CmsRole;
 use App\Models\Cms\CmsUser;
+use App\Traits\FilterBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,24 @@ use Illuminate\Support\Facades\Auth;
  */
 class CmsUserController extends Controller
 {
+    use FilterBuilder;
+
+    /**
+     * Filter fields
+     */
+    const FILTER_FIELDS = [
+        'id'         => 'numbers',
+        'name'       => 'equal',
+        'email'      => 'like',
+        'login'      => 'equal',
+        'page_limit' => 'manual'
+    ];
+
+    const CONNECTIONS = [
+        'stage.cms',
+        'live.cms',
+        'dev.cms'
+    ];
 
     /**
      * Display a listing of the resource.
@@ -24,21 +43,9 @@ class CmsUserController extends Controller
      */
     public function index(Request $request)
     {
-        $activeDirection = $request->get('direction', environment());
-        $keyword = $request->get('search');
-        $perPage = 25;
+        $cmsUsers = $this->applyFilter($request, CmsUser::get())->paginate($this->perPage);
 
-        if (!empty($keyword)) {
-            $cmsUsers = CmsUser::with('cmsRoles', 'responsiveAdmin')->where('login', 'LIKE', "%$keyword%")
-                ->orWhere('name', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->latest()
-                ->paginate($perPage);
-        } else {
-            $cmsUsers = CmsUser::with('cmsRoles', 'responsiveAdmin')->latest()->paginate($perPage);
-        }
-
-        return view('cms-user.index', compact(['activeDirection', 'cmsUsers', 'usersSpent']));
+        return view('cms-user.index', compact('cmsUsers'));
     }
 
     /**
@@ -63,10 +70,12 @@ class CmsUserController extends Controller
     {
         $requestData = $request->all();
 
-        $cmsuser = CmsUser::create($requestData);
+        foreach (self::CONNECTIONS as $connection) {
+            $cmsuser = CmsUser::on($connection)->create($requestData);
 
-        if (!empty($request->roles)) {
-            $cmsuser->cmsRoles()->attach($request->roles, ['created_by' => Auth::user()->id]);
+            if (!empty($request->roles)) {
+                $cmsuser->cmsRoles()->attach($request->roles, ['created_by' => Auth::user()->id]);
+            }
         }
 
         pushNotify('success', __('CmsUser') . ' ' . __('common.action.added'));
@@ -96,23 +105,18 @@ class CmsUserController extends Controller
      */
     public function edit(int $id)
     {
-        $env = session()->get('environment');
-        if(empty($env)) {
-            $env = environment();
-        }
-
         $cmsUser = CmsUser::with('cmsRoles')->where('id', $id)->first();
 
         $roles = CmsRole::all();
 
-        return view('cms-user.edit', compact(['roles', 'cmsUser', 'env']));
+        return view('cms-user.edit', compact(['roles', 'cmsUser']));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param CreateUpdateUser $request Request
-     * @param integer $id ID
+     * @param integer          $id      ID
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -120,11 +124,14 @@ class CmsUserController extends Controller
     {
         $requestData = $request->all();
 
-        $cmsuser = CmsUser::findOrFail($id);
-        $cmsuser->update($requestData);
-        $cmsuser->cmsRoles()->detach();
-        if (!empty($request->roles)) {
-            $cmsuser->cmsRoles()->attach($request->roles, ['created_by' => Auth::user()->id]);
+        foreach (self::CONNECTIONS as $connection) {
+            $cmsuser = CmsUser::on($connection)->findOrFail($id);
+
+            $cmsuser->update($requestData);
+            $cmsuser->cmsRoles()->detach();
+            if (!empty($request->roles)) {
+                $cmsuser->cmsRoles()->attach($request->roles, ['created_by' => Auth::user()->id]);
+            }
         }
 
         pushNotify('success', __('CmsUser') . ' ' . __('common.action.updated'));
@@ -140,7 +147,9 @@ class CmsUserController extends Controller
      */
     public function destroy(int $id)
     {
-        CmsUser::destroy($id);
+        foreach (self::CONNECTIONS as $connection) {
+            CmsUser::on($connection)->destroy($id);
+        }
 
         pushNotify('success', __('CmsUser') . ' ' . __('common.action.deleted'));
 

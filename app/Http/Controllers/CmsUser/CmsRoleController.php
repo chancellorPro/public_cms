@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 class CmsRoleController extends Controller
 {
 
+    const CONNECTIONS = [
+        'stage.cms',
+        'live.cms',
+        'dev.cms'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -23,20 +29,18 @@ class CmsRoleController extends Controller
      */
     public function index(Request $request)
     {
-        $activeDirection = $request->get('direction', environment());
         $keyword = $request->get('search');
-        $perPage = 25;
 
         if (!empty($keyword)) {
             $cmsRoles = CmsRole::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('description', 'LIKE', "%$keyword%")
                 ->latest()
-                ->paginate($perPage);
+                ->paginate($this->perPage);
         } else {
-            $cmsRoles = CmsRole::latest()->paginate($perPage);
+            $cmsRoles = CmsRole::latest()->paginate($this->perPage);
         }
 
-        return view('cms-role.index', compact('cmsRoles', 'activeDirection'));
+        return view('cms-role.index', compact('cmsRoles'));
     }
 
     /**
@@ -74,7 +78,7 @@ class CmsRoleController extends Controller
                         foreach ($pagesGate[$pageName]['pages'] as $page) {
                             $pageName = $page['name'];
                             $params   = implode('/', $page['params']);
-                            
+
                             $permissions['configured'][__($pageName)][$actionName] = [
                                 'id'   => $routeName . '/' . $params,
                                 'name' => __($actionName),
@@ -109,14 +113,16 @@ class CmsRoleController extends Controller
     {
         $requestData = $request->all();
 
-        $cmsRole = CmsRole::create($requestData);
+        foreach (self::CONNECTIONS as $connection) {
+            $cmsRole = CmsRole::on($connection)->create($requestData);
 
-        if (!empty($request->permissions)) {
-            $rolePermissions = [];
-            foreach ($request->permissions as $permission) {
-                $rolePermissions[] = new CmsRolePermission(['permission' => $permission]);
+            if (!empty($request->permissions)) {
+                $rolePermissions = [];
+                foreach ($request->permissions as $permission) {
+                    $rolePermissions[] = new CmsRolePermission(['permission' => $permission]);
+                }
+                $cmsRole->cmsRolePermissions()->saveMany($rolePermissions);
             }
-            $cmsRole->cmsRolePermissions()->saveMany($rolePermissions);
         }
 
         pushNotify('success', __('CmsRole') . ' ' . __('common.action.added'));
@@ -165,16 +171,18 @@ class CmsRoleController extends Controller
     {
         $requestData = $request->all();
 
-        $cmsRole = CmsRole::with('CmsRolePermissions')->findOrFail($id);
-        $cmsRole->update($requestData);
+        foreach (self::CONNECTIONS as $connection) {
+            $cmsRole = CmsRole::on($connection)->with('CmsRolePermissions')->findOrFail($id);
+            $cmsRole->update($requestData);
 
-        $cmsRole->cmsRolePermissions()->delete();
-        if (!empty($request->permissions)) {
-            $rolePermissions = [];
-            foreach ($request->permissions as $permission) {
-                $rolePermissions[] = new CmsRolePermission(['permission' => $permission]);
+            $cmsRole->cmsRolePermissions()->delete();
+            if (!empty($request->permissions)) {
+                $rolePermissions = [];
+                foreach ($request->permissions as $permission) {
+                    $rolePermissions[] = new CmsRolePermission(['permission' => $permission]);
+                }
+                $cmsRole->cmsRolePermissions()->saveMany($rolePermissions);
             }
-            $cmsRole->cmsRolePermissions()->saveMany($rolePermissions);
         }
 
         pushNotify('success', __('CmsRole') . ' ' . __('common.action.updated'));
@@ -190,7 +198,9 @@ class CmsRoleController extends Controller
      */
     public function destroy(int $id)
     {
-        CmsRole::destroy($id);
+        foreach (self::CONNECTIONS as $connection) {
+            CmsRole::on($connection)->destroy($id);
+        }
 
         pushNotify('success', __('CmsRole') . ' ' . __('common.action.deleted'));
         return redirect('cms-roles');
