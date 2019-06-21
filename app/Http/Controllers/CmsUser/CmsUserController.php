@@ -43,9 +43,10 @@ class CmsUserController extends Controller
      */
     public function index(Request $request)
     {
-        $cmsUsers = $this->applyFilter($request, CmsUser::get())->paginate($this->perPage);
+        $activeDirection = $request->get('direction', environment());
+        $cmsUsers = $this->applyFilter($request, CmsUser::query())->paginate($this->perPage);
 
-        return view('cms-user.index', compact('cmsUsers'));
+        return view('cms-user.index', compact('cmsUsers', 'activeDirection'));
     }
 
     /**

@@ -28,31 +28,6 @@
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
                     </a>
 
-                    @include('common.buttons.base', [
-                        'route' => 'cms-users.sync',
-                        'name' => __('Sync with stage'),
-                        'fa_class' => 'fa-refresh',
-                        'btn_class' => 'btn-primary btn-sm',
-                        'class' => 'ajax-submit-action',
-                        'dataset' => [
-                            'method' => 'POST',
-                            'dismiss' => 1,
-                            'reload' => 1,
-                        ],
-                    ])
-
-                    <form method="GET" action="{{ url('/cms-users') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                        <div class="input-group">
-                            <span class="input-group-append">
-                            <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                <button class="form-control" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-
-                    <br/>
                     <br/>
                     <div class="table-responsive">
                         <table class="table">
