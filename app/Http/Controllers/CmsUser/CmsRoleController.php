@@ -26,6 +26,7 @@ class CmsRoleController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
+        $activeDirection = $request->get('direction', environment());
 
         if (!empty($keyword)) {
             $cmsRoles = CmsRole::where('name', 'LIKE', "%$keyword%")
@@ -36,7 +37,7 @@ class CmsRoleController extends Controller
             $cmsRoles = CmsRole::latest()->paginate($this->perPage);
         }
 
-        return view('cms-role.index', compact('cmsRoles'));
+        return view('cms-role.index', compact('cmsRoles', 'activeDirection'));
     }
 
     /**

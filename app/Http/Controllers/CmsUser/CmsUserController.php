@@ -143,7 +143,13 @@ class CmsUserController extends Controller
     public function destroy(int $id)
     {
         foreach (CmsUser::CONNECTIONS as $connection) {
-            CmsUser::on($connection)->destroy($id);
+            $user = CmsUser::on($connection)->findOrFail($id);
+
+            foreach ($user->cmsRoles()->get() as $role) {
+                CmsRole::destroy($role->id);
+            }
+
+            $user->destroy($id);
         }
 
         pushNotify('success', __('CmsUser') . ' ' . __('common.action.deleted'));

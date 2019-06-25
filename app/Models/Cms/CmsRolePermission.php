@@ -30,6 +30,22 @@ class CmsRolePermission extends Model
         'permission'
     ];
 
+    const DB_CONNECTION = 'group_admin';
+
+    /**
+     * CmsRolePermission constructor.
+     *
+     * @param array $attributes Attributes
+     *
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->connection = environment() . '.' . self::DB_CONNECTION;
+    }
+
     /**
      * CmsRole relation
      *

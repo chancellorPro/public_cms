@@ -51,7 +51,7 @@ class GroupController extends Controller
     public function edit(Request $request)
     {
         $activeDirection = $request->get('direction', environment());
-        $rows = $this->ApplyFilter($request, GroupAdmin::with('user'))->get();
+        $rows = $this->ApplyFilter($request, GroupAdmin::with('user')->where(['sender_id' => auth()->id()]))->get();
 
         return view('group-edit.index', compact(['rows', 'activeDirection']));
     }
