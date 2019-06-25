@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CmsUser;
 use App\Http\Controllers\Controller;
 use App\Models\Cms\CmsRole;
 use App\Models\Cms\CmsRolePermission;
+use App\Models\Cms\CmsUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,11 +15,6 @@ use Illuminate\Support\Facades\Route;
 class CmsRoleController extends Controller
 {
 
-    const CONNECTIONS = [
-        'stage.cms',
-        'live.cms',
-        'dev.cms'
-    ];
 
     /**
      * Display a listing of the resource.
@@ -113,7 +109,7 @@ class CmsRoleController extends Controller
     {
         $requestData = $request->all();
 
-        foreach (self::CONNECTIONS as $connection) {
+        foreach (CmsUser::CONNECTIONS as $connection) {
             $cmsRole = CmsRole::on($connection)->create($requestData);
 
             if (!empty($request->permissions)) {
@@ -171,7 +167,7 @@ class CmsRoleController extends Controller
     {
         $requestData = $request->all();
 
-        foreach (self::CONNECTIONS as $connection) {
+        foreach (CmsUser::CONNECTIONS as $connection) {
             $cmsRole = CmsRole::on($connection)->with('CmsRolePermissions')->findOrFail($id);
             $cmsRole->update($requestData);
 
@@ -198,7 +194,7 @@ class CmsRoleController extends Controller
      */
     public function destroy(int $id)
     {
-        foreach (self::CONNECTIONS as $connection) {
+        foreach (CmsUser::CONNECTIONS as $connection) {
             CmsRole::on($connection)->destroy($id);
         }
 

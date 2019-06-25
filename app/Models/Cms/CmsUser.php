@@ -60,6 +60,12 @@ class CmsUser extends Authenticatable
 
     const DB_CONNECTION = 'group_admin';
 
+    const CONNECTIONS = [
+        'stage.group_admin',
+        'live.group_admin',
+        'dev.group_admin'
+    ];
+
     /**
      * CmsUser constructor.
      *
@@ -276,9 +282,9 @@ class CmsUser extends Authenticatable
      */
     public static function sync()
     {
-        $stageDatabase = DB::connection('stage.cms');
-        $liveDatabase = DB::connection('live.cms');
-        $sourceDatabase = DB::connection('dev.cms');
+        $stageDatabase = DB::connection('stage.group_admin');
+        $liveDatabase = DB::connection('live.group_admin');
+        $sourceDatabase = DB::connection('dev.group_admin');
 
         foreach ($sourceDatabase->table('cms_users')->get() as $data) {
             $stageDatabase->table('cms_users')->updateOrInsert(['id' => $data->id], (array)$data);

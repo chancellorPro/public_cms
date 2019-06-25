@@ -28,12 +28,6 @@ class CmsUserController extends Controller
         'page_limit' => 'manual'
     ];
 
-    const CONNECTIONS = [
-        'stage.cms',
-        'live.cms',
-        'dev.cms'
-    ];
-
     /**
      * Display a listing of the resource.
      *
@@ -71,7 +65,7 @@ class CmsUserController extends Controller
     {
         $requestData = $request->all();
 
-        foreach (self::CONNECTIONS as $connection) {
+        foreach (CmsUser::CONNECTIONS as $connection) {
             $cmsuser = CmsUser::on($connection)->create($requestData);
 
             if (!empty($request->roles)) {
@@ -125,7 +119,7 @@ class CmsUserController extends Controller
     {
         $requestData = $request->all();
 
-        foreach (self::CONNECTIONS as $connection) {
+        foreach (CmsUser::CONNECTIONS as $connection) {
             $cmsuser = CmsUser::on($connection)->findOrFail($id);
 
             $cmsuser->update($requestData);
@@ -148,7 +142,7 @@ class CmsUserController extends Controller
      */
     public function destroy(int $id)
     {
-        foreach (self::CONNECTIONS as $connection) {
+        foreach (CmsUser::CONNECTIONS as $connection) {
             CmsUser::on($connection)->destroy($id);
         }
 
